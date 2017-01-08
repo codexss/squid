@@ -1,6 +1,7 @@
 FROM alpine
 MAINTAINER lentin <noreply@lte.pw>
 
+ADD entrypoint.sh /entrypoint.sh
 RUN apk add --no-cache squid curl && \
         chown -R squid:squid /var/cache/squid && \
         chown -R squid:squid /var/log/squid && \
