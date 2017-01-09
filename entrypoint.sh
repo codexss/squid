@@ -1,4 +1,5 @@
 #!/bin/sh
-/usr/sbin/squid -NYCd 1 &
-sleep 3
-tail -f /var/log/squid/access.log
+if [ "$HOSTNAME" != "" ]; then
+  printf "visible_hostname $HOSTNAME" >> /etc/squid/squid.conf
+fi
+/usr/sbin/squid -NX
