@@ -1,16 +1,13 @@
 FROM alpine
-MAINTAINER lentin <noreply@lte.pw>
+MAINTAINER lentin <docker@lte.pw>
 
-ADD entrypoint.sh /entrypoint.sh
 RUN apk add --no-cache squid curl && \
-        chown -R squid:squid /var/cache/squid && \
-        chown -R squid:squid /var/log/squid && \
         chmod +x /entrypoint.sh && \
-        squid -z && \
-        mv /etc/squid/squid.conf /etc/squid/squid.conf.dist
+        squid -z -F
 
 ADD squid.conf /etc/squid/squid.conf
+ADD entrypoint.sh /entrypoint.sh
 
-EXPOSE 25
+EXPOSE 3128
 
 ENTRYPOINT ["/entrypoint.sh"]
