@@ -8,6 +8,6 @@ RUN apk add --no-cache squid curl && \
         chmod +x /entrypoint.sh && \
         squid -zF
 
-EXPOSE 3128
+EXPOSE 443
 
 ENTRYPOINT ["/entrypoint.sh"]
